@@ -1,0 +1,9 @@
+package sololc:webhook@0.1.0;
+
+world http-webhook {
+    // 引入整个代理世界，它包含了所有的 HTTP 定义
+    include wasi:http/proxy@0.2.0;
+
+    // 显式导出官方定义的处理器接口
+    export wasi:http/incoming-handler@0.2.0;
+}

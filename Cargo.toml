@@ -1,0 +1,14 @@
+[package]
+name = "sololc-webhook-sdk"
+version = "0.1.0"
+edition = "2024"
+
+[lib]
+crate-type = ["cdylib"] # WebAssembly 组件必须是 cdylib
+
+[dependencies]
+wit-bindgen = { version = "0.59.0", features = ["macros"] }
+# 引入基础的反序列化库，让 SDK 具备传统的 req.json() 能力
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+
