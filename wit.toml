@@ -2,13 +2,16 @@
 package = "sololc:webhook"
 version = "0.1.0"
 
-# 2. 💡 必须补充的工业发布元数据
 authors = ["Josh Klein <gigacoderx@gmail.com>"]
-description = "An industrial-grade Webhook receiver SDK based on WASI 0.2.0."
+description = "High-performance WASI-HTTP Webhook SDK for Vortex Runtime"
 license = "MIT"
 
 # 声明你需要从 wa.dev 注册表下载的依赖
 [dependencies]
+"wasi:cli" = "0.2.0"
 "wasi:http" = "0.2.0"
 "wasi:io" = "0.2.0"
 "wasi:clocks" = "0.2.0"
+"wasi:random" = "0.2.0"
+"wasi:filesystem" = "0.2.0"
+"wasi:sockets" = "0.2.0"

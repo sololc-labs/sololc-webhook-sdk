@@ -1,0 +1,22 @@
+[package]
+name = "sololc-webhook-macros"
+version = "0.1.0"
+edition = "2024"
+authors = ["Sololc Maintainers <maintainers@sololc.org>"]
+description = "Provides procedural macro routing attributes for the Sololc Webhook SDK."
+license = "Apache-2.0"
+repository = "https://github.com/sololc/sololc-webhook-sdk"
+documentation = "https://docs.rs/sololc-webhook-macros"
+readme = "README.md"
+keywords = ["wasi", "webhook", "proc-macro", "http", "webassembly"]
+categories = ["wasm", "development-tools::procedural-macro-helpers", "web-programming"]
+
+[lib]
+# Indicates that this crate compiles into a dynamic library used exclusively 
+# during the compilation phase of dependent downstream crates.
+proc-macro = true
+
+[dependencies]
+# 🌟 Clean and Zero-Dependency Design:
+# This procedural macro avoids parsing heavy-weights like `syn` or `quote` to optimize
+# target compilation velocities. It relies purely on the compiler's built-in `proc_macro`.

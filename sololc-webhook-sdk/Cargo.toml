@@ -1,0 +1,25 @@
+[package]
+name = "sololc-webhook-sdk"
+version = "0.1.0"
+edition = "2024"
+authors = ["Sololc Maintainers <maintainers@sololc.org>"]
+description = "Provides an ergonomic, ultra-high-performance WASI-HTTP Webhook SDK for the Sololc Runtime."
+license = "Apache-2.0"
+repository = "https://github.com/sololc/sololc-webhook-sdk"
+documentation = "https://docs.rs/sololc-webhook-sdk"
+readme = "README.md"
+keywords = ["wasi-http", "webhook-sdk", "webassembly", "Sololc", "component-model"]
+categories = ["wasm", "web-programming", "api-bindings"]
+
+[lib]
+# 🌟 `cdylib` is mandatory for building standard WebAssembly Component Model modules (.wasm),
+# while `rlib` allows this crate to be linked statically inside downstream Rust projects.
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+# Local workspace path-bound macro dependency for high-speed routing codegen
+sololc-webhook-macros = { path = "../sololc-webhook-macros" }
+
+# Inherited workspace infrastructure dependencies with explicit macros features activation
+wit-bindgen = { workspace = true, features = ["macros"] }
+futures = { workspace = true }
