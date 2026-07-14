@@ -13,7 +13,7 @@ This workspace decouples standard WebAssembly Component Model (WASIp2) protocol 
 
 The repository orchestrates multiple interlocking sub-packages alongside the official Component Model Interface (`.wit`) specifications to establish an ergonomic translation layer across guest-host boundaries:
 ```
-Host Runtime Boundary (Vortex / Sololc)
+Host Runtime Boundary (Sololc)
                                  │
                                  ▼ [wasi:http/incoming-handler]
 ┌─────────────────────────────────────────────────────────────────────────┐
@@ -30,7 +30,7 @@ Host Runtime Boundary (Vortex / Sololc)
 │  └─────────────────────────────────┬─────────────────────────────────┘  │
 │                                    ▼                                    │
 │  ┌───────────────────────────────────────────────────────────────────┐  │
-│  │ 3. sololc-webhook-sdk (Ergonomic Core Engine)                      │  │
+│  │ 3. sololc-webhook-sdk (Ergonomic Core Engine)                     │  │
 │  │    Wraps resource-managed streams into clean Request / Response.  │  │
 │  └───────────────────────────────────────────────────────────────────┘  │
 └─────────────────────────────────────────────────────────────────────────┘

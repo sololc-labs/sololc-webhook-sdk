@@ -1,12 +1,10 @@
-# 声明当前项目的包名
 package = "sololc:webhook"
 version = "0.1.0"
 
 authors = ["Josh Klein <gigacoderx@gmail.com>"]
-description = "High-performance WASI-HTTP Webhook SDK for Vortex Runtime"
-license = "MIT"
+description = "High-performance WASI-HTTP Webhook SDK for Sololc Runtime"
+license = "Apache-2.0"
 
-# 声明你需要从 wa.dev 注册表下载的依赖
 [dependencies]
 "wasi:cli" = "0.2.0"
 "wasi:http" = "0.2.0"

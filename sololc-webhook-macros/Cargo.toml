@@ -2,12 +2,12 @@
 name = "sololc-webhook-macros"
 version = "0.1.0"
 edition = "2024"
-authors = ["Sololc Maintainers <maintainers@sololc.org>"]
+authors = ["Josh Klein <gigacoderx@gmail.com>"]
 description = "Provides procedural macro routing attributes for the Sololc Webhook SDK."
 license = "Apache-2.0"
-repository = "https://github.com/sololc/sololc-webhook-sdk"
+repository = "https://github.com/sololc-labs/sololc-webhook-sdk"
 documentation = "https://docs.rs/sololc-webhook-macros"
-readme = "README.md"
+readme = "../README.md"
 keywords = ["wasi", "webhook", "proc-macro", "http", "webassembly"]
 categories = ["wasm", "development-tools::procedural-macro-helpers", "web-programming"]
 

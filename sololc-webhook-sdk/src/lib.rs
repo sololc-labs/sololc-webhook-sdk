@@ -1,6 +1,6 @@
 //! # Sololc Webhook SDK
 //!
-//! Provides a high-performance, modern, and ergonomic WASI-HTTP Webhook SDK 
+//! Provides a high-performance, modern, and ergonomic WASI-HTTP Webhook SDK
 //! optimized for the Sololc Runtime.
 //!
 //! This crate simplifies the development of Webhook microservices by abstracting
@@ -9,8 +9,9 @@
 
 // 1. 自动定位本地相对于项目根目录的 wit 协议文件，并自动焊接底层契约
 wit_bindgen::generate!({
-    path: "../wit/webhook.wit", 
+    path: "../wit",
     world: "webhook-proxy",
+    generate_all,
 });
 
 mod http_types;
@@ -23,27 +24,23 @@ mod http_types;
 /// See also [`wasi::http::types`] for the underlying raw assets.
 pub use exports::wasi::http::incoming_handler::Guest;
 
+
 /// Exposes the official WASI-HTTP types used for lower-level requests and responses.
 ///
-/// This module contains critical raw assets such as [`IncomingRequest`], [`OutgoingResponse`],
+/// Contains critical raw assets such as [`IncomingRequest`], [`OutgoingResponse`],
 /// [`ResponseOutparam`], and [`Fields`]. For a more ergonomic experience, use the SDK's
 /// high-level wrapper types [`Request`] and [`Response`] instead.
-pub use wasi::http::types::{
-    IncomingRequest, 
-    ResponseOutparam, 
-    OutgoingResponse, 
-    Fields
-};
+pub use self::wasi::http::types::{Fields, IncomingRequest, OutgoingResponse, ResponseOutparam};
 
 /// Exposes the ergonomic high-level wrapper types.
 ///
 /// Re-exports [`Request`] and [`Response`] which abstract raw incoming streams and
 /// field structures into standard, intuitive web structures.
-pub use http_types::{Request, Response};
+pub use self::http_types::{Request, Response};
 
 /// Routes an incoming HTTP `GET` request to the annotated handler function.
 ///
-/// Represents the entrypoint for retrieving read-only resources within your plugin.
+/// Acts as the entrypoint for retrieving read-only resources within your plugin.
 ///
 /// # Examples
 ///
@@ -97,3 +94,35 @@ pub use sololc_webhook_macros::head;
 ///
 /// Describes the communication options and allowed methods for the target resource.
 pub use sololc_webhook_macros::options;
+
+// --- 1. Logging client module ---
+#[cfg(feature = "logging")]
+pub mod logging;
+
+/// Initializes the global WASIp2 system logger and binds it to the `log` ecosystem.
+///
+/// Returns a [`Result<(), log::SetLoggerError>`][log::SetLoggerError] indicating
+/// whether the active global logger was bound successfully.
+#[cfg(feature = "logging")]
+pub use logging::init as init_logger;
+
+// --- 2. Key-value storage module ---
+#[cfg(feature = "kv")]
+pub mod kv;
+
+/// Represents a safe, high-level abstraction over the WASIp2 `wasi:keyvalue` system.
+///
+/// Leverages the state-bound APIs provided by the Sololc host executor to persist
+/// and fetch arbitrary byte-buffers synchronously within standard asynchronous routines.
+#[cfg(feature = "kv")]
+pub use kv::KvStore;
+
+// --- 3. Asynchronous HTTP client module ---
+#[cfg(feature = "http-client")]
+pub mod http_client;
+
+/// Dispatches outgoing HTTP requests utilizing the WASIp2 `wasi:http/outgoing-handler`.
+///
+/// Coordinates connection pools and underlying network transports securely via the sandbox gateway.
+#[cfg(feature = "http-client")]
+pub use crate::http_client::client::HttpClient;
