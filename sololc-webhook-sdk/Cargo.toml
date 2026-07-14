@@ -2,12 +2,12 @@
 name = "sololc-webhook-sdk"
 version = "0.1.0"
 edition = "2024"
-authors = ["Sololc Maintainers <maintainers@sololc.org>"]
+authors = ["Josh Klein <gigacoderx@gmail.com>"]
 description = "Provides an ergonomic, ultra-high-performance WASI-HTTP Webhook SDK for the Sololc Runtime."
 license = "Apache-2.0"
-repository = "https://github.com/sololc/sololc-webhook-sdk"
+repository = "https://github.com/sololc-labs/sololc-webhook-sdk"
 documentation = "https://docs.rs/sololc-webhook-sdk"
-readme = "README.md"
+readme = "../README.md"
 keywords = ["wasi-http", "webhook-sdk", "webassembly", "Sololc", "component-model"]
 categories = ["wasm", "web-programming", "api-bindings"]
 
@@ -16,7 +16,15 @@ categories = ["wasm", "web-programming", "api-bindings"]
 # while `rlib` allows this crate to be linked statically inside downstream Rust projects.
 crate-type = ["cdylib", "rlib"]
 
+[features]
+default = ["http-client"]
+logging = ["dep:log"]
+kv = []
+http-client = []
+
 [dependencies]
+log = { version = "0.4", optional = true }
+wasi = { version = "0.13.0" }
 # Local workspace path-bound macro dependency for high-speed routing codegen
 sololc-webhook-macros = { path = "../sololc-webhook-macros" }
 
