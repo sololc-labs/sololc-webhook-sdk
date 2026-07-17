@@ -11,6 +11,14 @@ readme = "../README.md"
 keywords = ["wasi-http", "webhook-sdk", "webassembly", "Sololc", "component-model"]
 categories = ["wasm", "web-programming", "api-bindings"]
 
+include = [
+    "src/**/*",    
+    "wit/**/*",   
+    "Cargo.toml", 
+    "../README.md",
+    "../LICENSE"    
+]
+
 [lib]
 # 🌟 `cdylib` is mandatory for building standard WebAssembly Component Model modules (.wasm),
 # while `rlib` allows this crate to be linked statically inside downstream Rust projects.
@@ -26,7 +34,7 @@ http-client = []
 log = { version = "0.4", optional = true }
 wasi = { version = "0.13.0" }
 # Local workspace path-bound macro dependency for high-speed routing codegen
-sololc-webhook-macros = { path = "../sololc-webhook-macros" }
+sololc-webhook-macros = { workspace = true }
 
 # Inherited workspace infrastructure dependencies with explicit macros features activation
 wit-bindgen = { workspace = true, features = ["macros"] }

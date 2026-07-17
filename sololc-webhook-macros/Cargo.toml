@@ -11,6 +11,13 @@ readme = "../README.md"
 keywords = ["wasi", "webhook", "proc-macro", "http", "webassembly"]
 categories = ["wasm", "development-tools::procedural-macro-helpers", "web-programming"]
 
+include = [
+    "src/**/*",     
+    "Cargo.toml", 
+    "../README.md",
+    "../LICENSE"    
+]
+
 [lib]
 # Indicates that this crate compiles into a dynamic library used exclusively 
 # during the compilation phase of dependent downstream crates.
