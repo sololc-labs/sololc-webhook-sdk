@@ -7,9 +7,8 @@
 //! raw WebAssembly System Interface (WASI) HTTP components into a routing style
 //! reminiscent of mainstream Rust web frameworks (such as Axum or Actix-web).
 
-// 1. 自动定位本地相对于项目根目录的 wit 协议文件，并自动焊接底层契约
 wit_bindgen::generate!({
-    path: "../wit",
+    path: "wit",
     world: "webhook-proxy",
     generate_all,
 });
